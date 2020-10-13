@@ -67,7 +67,7 @@ RSpec.describe "KiwiRail Practical Test" do
 
         @new_notepad = Selenium::WebDriver.for(:remote, :url => "http://127.0.0.1:4723", :desired_capabilities => caps )
         aggregate_failures do
-          expect(@new_notepad.title).to eq("#{@actual_filename} - Notepad")
+          expect(@new_notepad.title).to eq("#{@actual_filename.gsub(/[.].*/,'')} - Notepad")
           expect(NotepadControls.new(@new_notepad).get_notepad_text).to eq(@message)
         end
       ensure
